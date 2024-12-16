@@ -154,6 +154,6 @@ func main() {
     log.Fatal(err)
   }
 
-  //part1(lines)
+  part1(lines)
   part2(lines)
 }
