@@ -47,6 +47,7 @@ func part1(lines []string) {
 
   fmt.Printf("%v\n", rules)
   
+  pageSumTotal := 0
   for i = i+1; i < len(lines); i++ {
     pageOrder := strings.Split(lines[i], ",")
 
@@ -66,9 +67,17 @@ func part1(lines []string) {
       }
       left = append(left, page)
     }
-    fmt.Printf("%s - passes! \n", pageOrder)
-    fmt.Printf("Left: %v\n", left)
+    if !fails {
+      fmt.Printf("%s - passes! \n", pageOrder)
+      fmt.Printf("Left: %v\n", left)
+      
+      middlePage, _ := strconv.Atoi(pageOrder[len(pageOrder)/2])
+
+      pageSumTotal += middlePage  
+    }
   }
+
+  fmt.Printf("Total: %d\n", pageSumTotal)
 }
 
 func main() {

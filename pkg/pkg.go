@@ -1,9 +1,12 @@
 package pkg
 
 import (
-  "bufio"
-  "os"
-  "strconv"
+	"bufio"
+	"fmt"
+	"os"
+	"slices"
+	"strconv"
+	"strings"
 )
 
 func ReadFile(filePath string) ([]string, error) {
@@ -47,4 +50,30 @@ func SliceAToInt(a[] string) []int {
   }
 
   return tmp
+}
+
+var RESET = "\033[0m"
+var RED = "\033[31m"
+var GREEN = "\033[32m"
+
+func LogHighlightSubstring(s string, sub string) string{
+  replacement := RED + sub + RESET
+
+  returnString := fmt.Sprintln(strings.ReplaceAll(s, sub, replacement))
+  return returnString
+}
+
+func LogHighlightIndex(s string, i []int) string{
+  var returnString strings.Builder
+
+  for ind, r := range s {
+    if slices.Contains(i, ind){
+      returnString.WriteString(RED)
+      returnString.WriteRune(r)
+      returnString.WriteString(RESET)
+    } else {
+      returnString.WriteRune(r)
+    }
+  }
+  return returnString.String()
 }
