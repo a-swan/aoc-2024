@@ -77,3 +77,9 @@ func LogHighlightIndex(s string, i []int) string{
   }
   return returnString.String()
 }
+
+func PrintGrid(s [][]string) {
+  for i := 0; i < len(s); i++ {
+    fmt.Printf("%v\n", s[i])
+  }
+}
